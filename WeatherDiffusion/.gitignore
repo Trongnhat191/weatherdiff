@@ -5,3 +5,5 @@
 *.xml
 venv/
 results/
+__init__.py
+.ipynb_checkpoints

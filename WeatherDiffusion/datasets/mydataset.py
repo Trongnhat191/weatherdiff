@@ -54,7 +54,7 @@ class CustomDataset(torch.utils.data.Dataset):
 
         # Lấy danh sách tên file từ thư mục input
         self.image_files = sorted(os.listdir(self.input_dir))
-
+        print(f"Found {len(self.image_files)} images in {self.input_dir}")
     def __len__(self):
         return len(self.image_files)
 

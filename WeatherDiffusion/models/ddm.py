@@ -34,7 +34,7 @@ class EMAHelper(object):
             module = module.module
         for name, param in module.named_parameters():
             if param.requires_grad:
-                self.shadow[name] = param.data.clone()
+                self.shadow[name] = param.data.clone().to(param.device)
 
     def update(self, module):
         if isinstance(module, nn.DataParallel):
@@ -125,7 +125,7 @@ class DenoisingDiffusion(object):
         self.num_timesteps = betas.shape[0]
 
     def load_ddm_ckpt(self, load_path, ema=False):
-        checkpoint = utils.logging.load_checkpoint(load_path, None)
+        checkpoint = utils.logging.load_checkpoint(load_path, self.device)
         self.start_epoch = checkpoint['epoch']
         self.step = checkpoint['step']
         self.model.load_state_dict(checkpoint['state_dict'], strict=True)
