@@ -1,0 +1,47 @@
+data:
+    dataset: "MyDataset"               # <-- Thay đổi thành tên class trong mydataset.py
+    image_size: 64                     # Kích thước patch, giữ nguyên nếu fine-tune
+    channels: 3
+    num_workers: 4                     # Giảm xuống nếu máy bạn có ít CPU cores
+    data_dir: "./haze_data" # <-- THAY ĐỔI thành đường dẫn đến dataset của bạn
+    conditional: True
+
+model:
+    # Giữ nguyên cấu trúc model giống với model bạn định fine-tune
+    # Ví dụ, nếu fine-tune từ WeatherDiff64.pth.tar, dùng cấu hình của allweather.yml
+    in_channels: 3
+    out_ch: 3
+    ch: 128
+    ch_mult: [1, 2, 3, 4]
+    num_res_blocks: 2
+    attn_resolutions: [16, ]
+    dropout: 0.0
+    ema_rate: 0.999
+    ema: True
+    resamp_with_conv: True
+
+diffusion:
+    # Giữ nguyên
+    beta_schedule: linear
+    beta_start: 0.0001
+    beta_end: 0.02
+    num_diffusion_timesteps: 1000
+
+training:
+    patch_n: 16
+    batch_size: 16                     # Giảm nếu gặp lỗi hết bộ nhớ GPU (CUDA out of memory)
+    n_epochs: 1772                    # Số epochs để fine-tune, có thể ít hơn training từ đầu
+    n_iters: 2000200                    # Số iterations
+    snapshot_freq: 5000                # Tần suất lưu checkpoint
+    validation_freq: 5000
+
+sampling:
+    batch_size: 4
+    last_only: True
+
+optim:
+    weight_decay: 0.000
+    optimizer: "Adam"
+    lr: 0.00001                        # <-- Sử dụng learning rate nhỏ hơn để fine-tune (ví dụ: 1e-5)
+    amsgrad: False
+    eps: 0.00000001
