@@ -30,10 +30,10 @@ diffusion:
 training:
     patch_n: 16
     batch_size: 16                     # Giảm nếu gặp lỗi hết bộ nhớ GPU (CUDA out of memory)
-    n_epochs: 100                    # Số epochs để fine-tune, có thể ít hơn training từ đầu
-    n_iters: 20000                    # Số iterations
-    snapshot_freq: 500                # Tần suất lưu checkpoint
-    validation_freq: 500
+    n_epochs: 1700                    # Số epochs để fine-tune, có thể ít hơn training từ đầu
+    n_iters: 2000000                    # Số iterations
+    snapshot_freq: 5000                # Tần suất lưu checkpoint
+    validation_freq: 5000
 
 sampling:
     batch_size: 4
