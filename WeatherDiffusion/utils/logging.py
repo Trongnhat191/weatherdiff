@@ -20,4 +20,4 @@ def load_checkpoint(path, device):
     if device is None:
         return torch.load(path)
     else:
-        return torch.load(path, map_location=device)
+        return torch.load(path, map_location=device, weights_only = False)
