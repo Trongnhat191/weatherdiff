@@ -141,7 +141,8 @@ class DenoisingDiffusion(object):
 
         if os.path.isfile(self.args.resume):
             self.load_ddm_ckpt(self.args.resume)
-
+        print(self.optimizer)
+        print(f"Current learning rate before training: {self.optimizer.param_groups[0]['lr']}")
         for epoch in range(self.start_epoch, self.config.training.n_epochs):
             print('epoch: ', epoch)
             data_start = time.time()

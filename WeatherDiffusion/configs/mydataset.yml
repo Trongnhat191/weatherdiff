@@ -42,6 +42,6 @@ sampling:
 optim:
     weight_decay: 0.00001
     optimizer: "Adam"
-    lr: 0.00002                        # <-- Sử dụng learning rate nhỏ hơn để fine-tune (ví dụ: 1e-5)
+    lr: 0.000005                        # <-- Sử dụng learning rate nhỏ hơn để fine-tune (ví dụ: 1e-5)
     amsgrad: False
     eps: 0.00000001
