@@ -129,7 +129,7 @@ class DenoisingDiffusion(object):
         self.start_epoch = checkpoint['epoch']
         self.step = checkpoint['step']
         self.model.load_state_dict(checkpoint['state_dict'], strict=True)
-        self.optimizer.load_state_dict(checkpoint['optimizer'])
+        # self.optimizer.load_state_dict(checkpoint['optimizer']) # Vô hiệu hóa dòng này để không ghi đè optimizer
         self.ema_helper.load_state_dict(checkpoint['ema_helper'])
         if ema:
             self.ema_helper.ema(self.model)
