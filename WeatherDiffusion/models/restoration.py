@@ -33,6 +33,7 @@ class DiffusiveRestoration:
                 print(f"starting processing from image {y}")
                 x = x.flatten(start_dim=0, end_dim=1) if x.ndim == 5 else x
                 x_cond = x[:, :3, :, :].to(self.diffusion.device)
+                x_cond = data_transform(x_cond) 
                 x_output = self.diffusive_restoration(x_cond, r=r)
                 x_output = inverse_data_transform(x_output)
                 utils.logging.save_image(x_output, os.path.join(image_folder, f"{y}_output.png"))

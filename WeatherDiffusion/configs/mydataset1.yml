@@ -29,10 +29,10 @@ diffusion:
 
 training:
     patch_n: 16
-    batch_size: 16                     # Giảm nếu gặp lỗi hết bộ nhớ GPU (CUDA out of memory)
-    n_epochs: 1900                    # Số epochs để fine-tune, có thể ít hơn training từ đầu
-    n_iters: 2200000                   # Số iterations
-    snapshot_freq: 2000                # Tần suất lưu checkpoint
+    batch_size: 16                      # Giảm vì ảnh lớn hơn 64x64, tránh OOM
+    n_epochs: 1871                    # Số epochs để fine-tune, có thể ít hơn training từ đầu
+    n_iters: 2001000                   # Số iterations
+    snapshot_freq: 1000                # Tần suất lưu checkpoint
     validation_freq: 1000
 
 sampling:
@@ -40,8 +40,8 @@ sampling:
     last_only: True
 
 optim:
-    weight_decay: 0.001
+    weight_decay: 0.000
     optimizer: "Adam"
-    lr: 0.000005                        # <-- Sử dụng learning rate nhỏ hơn để fine-tune
+    lr: 0.00002                        # <-- Sử dụng learning rate nhỏ hơn để fine-tune (ví dụ: 1e-5)
     amsgrad: False
     eps: 0.00000001
